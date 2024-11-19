@@ -12,12 +12,13 @@ int main() {
 
   long int i,j;
   double a[n], b[n];
-  double start, end, run;
+  double start, end, run, start_parallel;
+  start = omp_get_wtime();
 
   for (i=0; i<n; i++) a[i] = (double)(i*2)/(i+6);
 
-  start = omp_get_wtime();
-  omp_set_num_threads(16);
+  omp_set_num_threads(1);
+  start_parallel = omp_get_wtime();
 
 #pragma omp parallel private(j)
 #pragma omp for
@@ -27,6 +28,6 @@ int main() {
 /* end parallel for */
 
   end = omp_get_wtime();
-    printf(" took %f seconds.\n", end-start);
+    printf(" took %f seconds total and %f seconds for parallel time.\n", end-start, end-start_parallel);
 
 }
