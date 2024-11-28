@@ -34,7 +34,7 @@ void diff_eq(double **C, double **C_new) {
 }
 
 int main() {
-    omp_set_num_threads(4);
+    omp_set_num_threads(8);
     double **C = (double **)malloc(N * sizeof(double *));
     if (C == NULL) {
         fprintf(stderr, "Falha na alocação de memória\n");
